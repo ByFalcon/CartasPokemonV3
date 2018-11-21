@@ -181,9 +181,16 @@ public class MyPrintDocumentAdapter extends PrintDocumentAdapter {
 
         //para pintar texto
         //canvas.drawText("This is some test content to verify that custom document printing works", leftMargin, titleBaseLine + 35, paint);
-        
-        //para pintar drawBitMap();
+        canvas.drawText("Nombre: " + consultaNombre, leftMargin, titleBaseLine + 35, paint);
+        canvas.drawText("Tipo: " + consultaTipo, leftMargin, titleBaseLine + 35, paint);
+        canvas.drawText("Puntos de salud: " + consultaPs, leftMargin, titleBaseLine + 35, paint);
+        canvas.drawText("Ataque: " + consultaAtaque, leftMargin, titleBaseLine + 35, paint);
+        canvas.drawText("Defensa: " + consultaDefensa, leftMargin, titleBaseLine + 35, paint);
+        canvas.drawText("Altura: " + consultaAltura, leftMargin, titleBaseLine + 35, paint);
+        canvas.drawText("Peso: " + consultaPeso, leftMargin, titleBaseLine + 35, paint);
 
+        //para pintar drawBitMap();
+        //canvas.drawBitmap(imageView, leftMargin, titleBaseLine + 35, paint);
         /*if (pagenumber % 2 == 0)
             paint.setColor(Color.RED);
         else
