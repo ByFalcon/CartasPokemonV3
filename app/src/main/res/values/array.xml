@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="imagenes">
+        <item>@drawable/pokemon1</item>
+        <item>@drawable/pokemon2</item>
+        <item>@drawable/pokemon3</item>
+        <item>@drawable/pokemon4</item>
+        <item>@drawable/pokemon5</item>
+        <item>@drawable/pokemon6</item>
+        <item>@drawable/pokemon7</item>
+        <item>@drawable/pokemon8</item>
+        <item>@drawable/pokemon9</item>
+        <item>@drawable/pokemon10</item>
+        <item>@drawable/pokemon11</item>
+        <item>@drawable/pokemon12</item>
+    </array>
+</resources>
