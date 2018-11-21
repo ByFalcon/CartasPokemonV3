@@ -6,6 +6,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.print.PrintManager;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -31,7 +33,7 @@ public class CrearPokemon extends AppCompatActivity {
     private Button bt;
     private Bitmap bitmap;
     private Uri uri;
-    private InputStream imageStream;
+    //private InputStream imageStream;
     //static int index;
     //int size = 12;
     //private ArrayList<Integer> arrayImages = new ArrayList<>();
@@ -114,14 +116,15 @@ public class CrearPokemon extends AppCompatActivity {
         if(requestCode == 10){
             if(resultCode == RESULT_OK){
                 uri = data.getData();
-                try {
+                bitmap= reduceBitmap(this, uri.toString(), 1024, 1024);
+                imageView.setImageBitmap(bitmap);
+                /*try {
                     imageStream = getContentResolver().openInputStream(uri);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
-                }
+                }*/
                 //bitmap = BitmapFactory.decodeStream(imageStream);
-                bitmap= reduceBitmap(this, uri.toString(), 1024, 1024);
-                imageView.setImageBitmap(bitmap);
+
                 /*uri = data.getData(); //Version 2
                 imageView.setImageBitmap(uri);
                 CrearPokemon.this.grantUriPermission(CrearPokemon.this.getPackageName(), uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -151,7 +154,6 @@ public class CrearPokemon extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
             e.printStackTrace();
             return null;
-
         }
     }
 }
