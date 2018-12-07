@@ -80,9 +80,17 @@ public class CrearPokemon extends AppCompatActivity {
                 finish();
             }
         });
+
     }
 
-   /* public void images(){
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+
+        super.onSaveInstanceState(outState);
+    }
+
+
+    /* public void images(){
          *
          * Version 1
          *
@@ -116,7 +124,7 @@ public class CrearPokemon extends AppCompatActivity {
         if(requestCode == 10){
             if(resultCode == RESULT_OK){
                 uri = data.getData();
-                bitmap= reduceBitmap(this, uri.toString(), 400, 400);
+                bitmap= reduceBitmap(this, uri.toString(), 32, 32);
                 imageView.setImageBitmap(bitmap);
                 /*try {
                     imageStream = getContentResolver().openInputStream(uri);
