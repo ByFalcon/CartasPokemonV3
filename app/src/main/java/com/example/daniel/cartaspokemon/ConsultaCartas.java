@@ -2,6 +2,7 @@ package com.example.daniel.cartaspokemon;
 
 import android.content.Context;
 import android.content.Intent;
+import android.print.PrintJob;
 import android.print.PrintManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ public class ConsultaCartas extends AppCompatActivity {
     private TextView consultaNombre, consultaTipo, consultaPs, consultaAtaque, consultaDefensa,
         consultaPeso, consultaAltura;
     private Button btImprimir;
+    private Pokemon pokemon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +36,7 @@ public class ConsultaCartas extends AppCompatActivity {
         btImprimir = findViewById(R.id.bt_imprimir);
 
         Intent i = getIntent();
-        Pokemon pokemon = i.getParcelableExtra("pokeconsulta");
+        pokemon = i.getParcelableExtra("pokeconsulta");
 
         imageView.setImageBitmap(pokemon.getImagen());
         consultaNombre.setText(pokemon.getNombre());
@@ -60,7 +62,6 @@ public class ConsultaCartas extends AppCompatActivity {
         PrintManager printManager = (PrintManager) this.getSystemService(Context.PRINT_SERVICE);
         String jobName = this.getString(R.string.app_name) + " Document";
         //Print nos permite hacer el trabajo de impresión.
-        printManager.print(jobName, new MyPrintDocumentAdapter(this, imageView, consultaNombre, consultaTipo, consultaPs, consultaAtaque, consultaDefensa,
-                consultaPeso, consultaAltura), null);
+        printManager.print(jobName, new MyPrintDocumentAdapter(this, pokemon),null);
     }
 }

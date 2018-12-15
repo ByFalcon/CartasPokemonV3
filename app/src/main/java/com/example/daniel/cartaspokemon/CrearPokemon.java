@@ -31,8 +31,9 @@ public class CrearPokemon extends AppCompatActivity {
     private Spinner spinnerNombre, spinnerTipo;
     private ImageView imageView;
     private Button bt;
-    private Bitmap bitmap;
+    static private Bitmap bitmap;
     private Uri uri;
+    Pokemon pokemon;
     //private InputStream imageStream;
     //static int index;
     //int size = 12;
@@ -71,7 +72,7 @@ public class CrearPokemon extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent();
-                Pokemon pokemon = new Pokemon(bitmap, spinnerNombre.getSelectedItem().toString(),
+                pokemon = new Pokemon(bitmap, spinnerNombre.getSelectedItem().toString(),
                         spinnerTipo.getSelectedItem().toString(), seekBarPs.getProgress(),
                         seekBarPeso.getProgress(), seekBarAltura.getProgress(),
                         seekBarAtaque.getProgress(), seekBarDefensa.getProgress());
@@ -85,10 +86,18 @@ public class CrearPokemon extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-
         super.onSaveInstanceState(outState);
+        if (bitmap != null){
+            outState.putParcelable("bitmap", bitmap);
+        }
     }
 
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Bitmap bitmap = savedInstanceState.getParcelable("bitmap");
+        imageView.setImageBitmap(bitmap);
+    }
 
     /* public void images(){
          *
@@ -124,7 +133,7 @@ public class CrearPokemon extends AppCompatActivity {
         if(requestCode == 10){
             if(resultCode == RESULT_OK){
                 uri = data.getData();
-                bitmap= reduceBitmap(this, uri.toString(), 32, 32);
+                bitmap= reduceBitmap(this, uri.toString(), 128, 128);
                 imageView.setImageBitmap(bitmap);
                 /*try {
                     imageStream = getContentResolver().openInputStream(uri);

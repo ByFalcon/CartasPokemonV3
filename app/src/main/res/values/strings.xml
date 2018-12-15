@@ -2,6 +2,13 @@
     <string name="app_name">CartasPokemon</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_main2">Main2Activity</string>
+    <string name="nombre">Nombre:</string>
+    <string name="tipo">Tipo:</string>
+    <string name="ps">Puntos de salud:</string>
+    <string name="ataque">Ataque:</string>
+    <string name="defensa">Defensa:</string>
+    <string name="peso">Peso:</string>
+    <string name="altura">Altura</string>
     <string-array name="pokemons">
         <item>blastoise</item>
         <item>bulbasur</item>

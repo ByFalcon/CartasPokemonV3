@@ -21,30 +21,19 @@ import java.io.IOException;
 
 public class MyPrintDocumentAdapter extends PrintDocumentAdapter {
 
-    private ImageView imageView;
-    private TextView consultaNombre, consultaTipo, consultaPs, consultaAtaque, consultaDefensa,
-            consultaPeso, consultaAltura;
     Context context;
     private int pageHeight;
     private int pageWidth;
     public PdfDocument myPdfDocument;
     public int totalpages = 1;
+    Pokemon pokemon;
 
     //También tenemos onStart() y onFinish():  son opcionales.
 
 
-    public MyPrintDocumentAdapter(Context context, ImageView imageView, TextView consultaNombre, TextView consultaTipo,
-                                  TextView consultaPs, TextView consultaAtaque,
-                                  TextView consultaDefensa, TextView consultaPeso, TextView consultaAltura) {
+    public MyPrintDocumentAdapter(Context context, Pokemon poke) {
         this.context = context;
-        this.imageView = imageView;
-        this.consultaNombre = consultaNombre;
-        this.consultaTipo = consultaTipo;
-        this.consultaPs = consultaPs;
-        this.consultaAtaque = consultaAtaque;
-        this.consultaDefensa = consultaDefensa;
-        this.consultaPeso = consultaPeso;
-        this.consultaAltura = consultaAltura;
+        this.pokemon = poke;
     }
 
     @Override
@@ -170,38 +159,26 @@ public class MyPrintDocumentAdapter extends PrintDocumentAdapter {
         Paint paint = new Paint();
         paint.setColor(Color.BLACK);
         paint.setTextSize(40);
+        canvas.drawText("Pokemon " + pagenumber, leftMargin, titleBaseLine, paint);
 
-        canvas.drawText(
-                "Test Print Document Page " + pagenumber,
-                leftMargin,
-                titleBaseLine,
-                paint);
-
-        paint.setTextSize(14);
-
-        //para pintar texto
-        //canvas.drawText("This is some test content to verify that custom document printing works", leftMargin, titleBaseLine + 35, paint);
-        canvas.drawText("Nombre: " + consultaNombre, leftMargin, titleBaseLine + 35, paint);
-        canvas.drawText("Tipo: " + consultaTipo, leftMargin, titleBaseLine + 35, paint);
-        canvas.drawText("Puntos de salud: " + consultaPs, leftMargin, titleBaseLine + 35, paint);
-        canvas.drawText("Ataque: " + consultaAtaque, leftMargin, titleBaseLine + 35, paint);
-        canvas.drawText("Defensa: " + consultaDefensa, leftMargin, titleBaseLine + 35, paint);
-        canvas.drawText("Altura: " + consultaAltura, leftMargin, titleBaseLine + 35, paint);
-        canvas.drawText("Peso: " + consultaPeso, leftMargin, titleBaseLine + 35, paint);
-
-        //para pintar drawBitMap();
-        //canvas.drawBitmap(imageView, leftMargin, titleBaseLine + 35, paint);
-        /*if (pagenumber % 2 == 0)
-            paint.setColor(Color.RED);
-        else
-            paint.setColor(Color.GREEN);
+        paint.setTextSize(30);
+        titleBaseLine+=35;
+        canvas.drawText(context.getResources().getString(R.string.nombre) + " " + pokemon.getNombre(), leftMargin, titleBaseLine, paint);
+        titleBaseLine+=35;
+        canvas.drawText(context.getResources().getString(R.string.tipo) + " " + pokemon.getTipo(), leftMargin, titleBaseLine, paint);
+        titleBaseLine+=35;
+        canvas.drawText(context.getResources().getString(R.string.ps) + " " + pokemon.getPuntosDeSalud(), leftMargin, titleBaseLine, paint);
+        titleBaseLine+=35;
+        canvas.drawText(context.getResources().getString(R.string.ataque) + " " + pokemon.getAtaque(), leftMargin, titleBaseLine, paint);
+        titleBaseLine+=35;
+        canvas.drawText(context.getResources().getString(R.string.defensa) + " " + pokemon.getDefensa(), leftMargin, titleBaseLine, paint);
+        titleBaseLine+=35;
+        canvas.drawText(context.getResources().getString(R.string.altura) + " " + pokemon.getAltura(), leftMargin, titleBaseLine, paint);
+        titleBaseLine+=35;
+        canvas.drawText(context.getResources().getString(R.string.peso) + " " + pokemon.getPeso(), leftMargin, titleBaseLine, paint);
 
         PdfDocument.PageInfo pageInfo = page.getInfo();
 
-        canvas.drawCircle(pageInfo.getPageWidth()/2,
-                pageInfo.getPageHeight()/2,
-                150,
-                paint);*/
     }
 }
 
